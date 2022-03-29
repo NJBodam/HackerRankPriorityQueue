@@ -1,6 +1,7 @@
 package priorityqueue;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Priorities {
 
@@ -24,8 +25,7 @@ public class Priorities {
         }
 
 
-    public static List<Student> getStudents(List<String> events) {
-        List empty = new ArrayList(List.of("EMPTY"));
+    public static ArrayList<String> getStudents(List<String> events) {
         StudentComparator comparator = new StudentComparator();
         PriorityQueue<Student> pr = new PriorityQueue<>(Integer.parseInt(events.get(0)), comparator);
 
@@ -34,16 +34,14 @@ public class Priorities {
         for (int i = 0; i < events.size(); i++) {
             if(events.get(i).startsWith("ENTER")) {
                 String[] event = events.get(i).split(" ");
-                pr.add(new Student(Integer.parseInt(event[3]), event[1], Double.parseDouble(event[2])));
+                pr.add(new Student(event[1], Double.parseDouble(event[2])));
             } else if(events.get(i).startsWith("SERVED")) {
                 pr.poll();
             }
 
         }
 
-        System.out.println(">>>>>>>>>." + pr.stream().toList());
-
-           return new ArrayList<>(pr);
+        return pr.stream().map(Student::getName).collect(Collectors.toCollection(ArrayList::new));
 
     }
 }

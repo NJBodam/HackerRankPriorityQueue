@@ -22,7 +22,8 @@ public class PriorityqueueApplication {
                 "ENTER Dan 3.95 50",
                 "SERVED"
         ));
-        Priorities.getStudents(events);
+
+        System.out.println(Priorities.getStudents(events));
 
     }
 

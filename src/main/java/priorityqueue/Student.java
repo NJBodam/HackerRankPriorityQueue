@@ -5,10 +5,13 @@ public class Student {
     String name;
     double cgpa;
 
-    public Student(int id, String name, double cgpa) {
+    public Student(String name, double cgpa) {
         this.id = id;
         this.name = name;
         this.cgpa = cgpa;
+    }
+    public Student() {
+
     }
 
     public int getId() {
